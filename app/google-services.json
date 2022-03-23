@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "262922547599",
+    "project_id": "pruebafcm-86fa4",
+    "storage_bucket": "pruebafcm-86fa4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262922547599:android:62c4e72a50473866cb5bfa",
+        "android_client_info": {
+          "package_name": "es.alvarorodriguez.pruebafcm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262922547599-jk8lkufngp4b72506j8u8ijo6gt96bh1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1wBFcxS3A1g9oA9qA3xKRAIVOsrb9GY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262922547599-jk8lkufngp4b72506j8u8ijo6gt96bh1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
