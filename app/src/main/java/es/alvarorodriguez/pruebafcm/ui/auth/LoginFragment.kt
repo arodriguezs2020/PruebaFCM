@@ -29,9 +29,18 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLoginBinding.bind(view)
+        isUserLoggedIn()
         doLogin()
     }
 
+    // Comprobamos si el usuario esta logueado ya o no
+    private fun isUserLoggedIn() {
+        firebaseAuth.currentUser?.let { user ->
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+        }
+    }
+
+    // Sino entra a en esta funcion y hará el login
     private fun doLogin() {
         binding.btnSignin.setOnClickListener {
             val email = binding.editTextEmail.text.toString().trim()
@@ -82,5 +91,4 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
         }
     }
-
 }
