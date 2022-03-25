@@ -35,7 +35,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     // Comprobamos si el usuario esta logueado ya o no
     private fun isUserLoggedIn() {
-        firebaseAuth.currentUser?.let { user ->
+        firebaseAuth.currentUser?.let {
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
     }

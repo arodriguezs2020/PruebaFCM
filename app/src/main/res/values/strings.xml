@@ -25,4 +25,11 @@
     <string name="e_mail">E-mail</string>
     <string name="password">Password</string>
     <string name="logout">Logout</string>
+    <string name="introduce_la_marca_del_coche">Introduce la marca del coche:</string>
+    <string name="seat">Seat...</string>
+    <string name="introduce_la_descripcion_del_coche">Introduce la descripcion del coche</string>
+    <string name="mi_coche_es_rojo">Mi coche es rojo...</string>
+    <string name="a_adir">Añadir</string>
+    <string name="add">Add</string>
+    <string name="home">Home</string>
 </resources>

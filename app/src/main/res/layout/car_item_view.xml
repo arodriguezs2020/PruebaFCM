@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="16dp"
+    android:layout_margin="8dp"
+    android:background="@color/teal_200"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_marca"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textStyle="bold"
+        tools:text="Marca"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/txt_description"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        tools:text="Esto es una prueba de una descripción"
+        android:layout_weight="1"/>
+
+</LinearLayout>

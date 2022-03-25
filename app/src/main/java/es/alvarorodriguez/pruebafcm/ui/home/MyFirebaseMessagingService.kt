@@ -7,6 +7,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -27,7 +28,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         message.notification?.let {
             Log.d(TAG, "Message Notification Body: ${it.body}")
-
             sendNotification(it.title!!, it.body!!)
         }
     }
@@ -41,16 +41,46 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         Log.d(TAG, "sendRegistrationTokenToServer($token)")
     }
 
-    @SuppressLint("UnspecifiedImmutableFlag")
     private fun sendNotification(messageTitle: String, messageBody: String) {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent,
-            PendingIntent.FLAG_ONE_SHOT)
-
+        val pendingIntent = clickNotification()
         val channelId = getString(R.string.default_notification_channel_id)
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+        val notificationBuilder = builderNotification(
+            channelId,
+            messageTitle,
+            messageBody,
+            defaultSoundUri,
+            pendingIntent
+        )
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        // Since android Oreo notification channel is needed.
+        versionOreo(channelId, notificationManager)
+        notificationManager.notify(0, notificationBuilder.build())
+    }
+
+    private fun versionOreo(
+        channelId: String,
+        notificationManager: NotificationManager
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                "Channel human readable title",
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun builderNotification(
+        channelId: String,
+        messageTitle: String,
+        messageBody: String,
+        defaultSoundUri: Uri?,
+        pendingIntent: PendingIntent?
+    ): NotificationCompat.Builder {
+        return NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setContentTitle(messageTitle)
             .setColorized(false)
@@ -62,18 +92,16 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setFullScreenIntent(pendingIntent, true)
             .setWhen(System.currentTimeMillis())
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+    }
 
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        // Since android Oreo notification channel is needed.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(channelId,
-                "Channel human readable title",
-                NotificationManager.IMPORTANCE_DEFAULT)
-            notificationManager.createNotificationChannel(channel)
-        }
-
-        notificationManager.notify(0, notificationBuilder.build())
+    @SuppressLint("UnspecifiedImmutableFlag")
+    private fun clickNotification(): PendingIntent? {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        return PendingIntent.getActivity(
+            this, 0, intent,
+            PendingIntent.FLAG_ONE_SHOT
+        )
     }
 
     companion object {

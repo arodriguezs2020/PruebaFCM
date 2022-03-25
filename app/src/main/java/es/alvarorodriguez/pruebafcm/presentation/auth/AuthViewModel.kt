@@ -18,6 +18,7 @@ class AuthViewModel(private val repo: AuthRepo): ViewModel() {
     }
 }
 
+@Suppress("UNCHECKED_CAST")
 class AuthViewModelFactory(private val repo: AuthRepo): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return AuthViewModel(repo) as T
