@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:padding="16dp"
     android:layout_height="match_parent"
     tools:context=".ui.add.AddFragment">
 
@@ -19,24 +20,10 @@
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@string/es_una_imagen_que_nos_permite_a_adir_una_foto_con_la_camara_con_tan_solo_darle_click" />
 
-    <TextView
-        android:id="@+id/txt_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:text="@string/introduce_la_marca_del_coche"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/img_add_photo" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/marca"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -47,23 +34,11 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="18sp"
-        android:layout_gravity="start"
-        android:textStyle="bold|italic"
-        android:text="@string/introduce_la_descripcion_del_coche" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/description"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -76,9 +51,11 @@
 
     <Button
         android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/a_adir"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/aniadir"
         android:layout_marginTop="16dp" />
 
