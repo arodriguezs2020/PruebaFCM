@@ -1,5 +1,8 @@
 package es.alvarorodriguez.pruebafcm.ui.auth
 
+import android.annotation.SuppressLint
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
@@ -19,6 +22,7 @@ import es.alvarorodriguez.pruebafcm.presentation.auth.AuthViewModelFactory
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private lateinit var binding: FragmentLoginBinding
+    private lateinit var preferences: SharedPreferences
 
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
 
@@ -29,8 +33,34 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLoginBinding.bind(view)
+        preferences = activity?.getPreferences(MODE_PRIVATE)!!
+        takePreferences()
         isUserLoggedIn()
         doLogin()
+        signUp()
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    private fun savePreferences(email: String, password: String) {
+        if (binding.ckbox.isChecked) {
+            preferences.edit()?.putString("email", email)?.putString("pass", password)?.apply()
+        }
+    }
+
+    private fun takePreferences() {
+        val email = preferences.getString("email", "")
+        val password = preferences.getString("pass", "")
+
+        if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+            binding.editTextEmail.setText(email)
+            binding.editTextPassword.setText(password)
+        }
+    }
+
+    private fun signUp() {
+        binding.txtSignup.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
     }
 
     // Comprobamos si el usuario esta logueado ya o no
@@ -47,6 +77,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             val password = binding.editTextPassword.text.toString().trim()
             validateCredentials(email, password)
             signIn(email, password)
+            savePreferences(email, password)
         }
     }
 
