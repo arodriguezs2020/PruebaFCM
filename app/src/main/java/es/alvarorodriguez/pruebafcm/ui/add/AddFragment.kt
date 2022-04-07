@@ -47,6 +47,11 @@ class AddFragment : Fragment(R.layout.fragment_add) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddBinding.bind(view)
+        addPhoto()
+        addCar()
+    }
+
+    private fun addPhoto() {
         binding.imgAddPhoto.setOnClickListener {
             try {
                 val camara = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -59,19 +64,31 @@ class AddFragment : Fragment(R.layout.fragment_add) {
                 ).show()
             }
         }
-        addCar()
     }
 
     private fun addCar() {
         binding.btnAdd.setOnClickListener {
             bitmap?.let {
-                val marca = binding.marca.text.toString().trim()
-                val description = binding.description.text.toString().trim()
+                val marca = binding.editTextMarca.text.toString().trim()
+                val description = binding.editTextDescription.text.toString().trim()
                 val imgCar = bitmap
-
-                observeAddCar(marca, description, imgCar!!)
+                if (validateCredentials(marca, description)) {
+                    observeAddCar(marca, description, imgCar!!)
+                }
             }
         }
+    }
+
+    private fun validateCredentials(marca: String, description: String): Boolean {
+        if (marca.isEmpty()) {
+            binding.editTextMarca.error = "Brand is empty"
+            return false
+        }
+        if (description.isEmpty()) {
+            binding.editTextDescription.error = "Description is empty"
+            return false
+        }
+        return true
     }
 
 

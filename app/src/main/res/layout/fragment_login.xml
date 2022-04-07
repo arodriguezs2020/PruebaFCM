@@ -9,6 +9,15 @@
     android:gravity="center"
     tools:context=".ui.auth.LoginFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:textSize="50sp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,6 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/signin"
+        android:backgroundTint="@color/morado"
         android:layout_marginTop="16dp"/>
 
     <ProgressBar

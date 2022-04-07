@@ -39,4 +39,8 @@
     <string name="salir_y_olvidar">Salir y olvidar</string>
     <string name="cambiar_tema">Cambiar Tema</string>
     <string name="log">Logout</string>
+    <string name="description">Description</string>
+    <string name="marca">Marca</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
 </resources>

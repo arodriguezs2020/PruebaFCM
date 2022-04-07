@@ -9,6 +9,15 @@
     android:gravity="center"
     tools:context=".ui.auth.RegisterFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:textSize="50sp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_username"
         android:layout_width="match_parent"
@@ -20,7 +29,7 @@
             android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textAutoCorrect"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -29,13 +38,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/phone"
+        android:layout_marginTop="8dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextTel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
+            android:inputType="phone"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,6 +103,7 @@
         android:id="@+id/btn_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/register"
         android:text="@string/sign_up"
         android:layout_marginTop="16dp"/>
 

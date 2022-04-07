@@ -10,4 +10,8 @@
     <color name="red">#BF0000</color>
     <color name="azul_marino">#000080</color>
     <color name="azul_acero">#4682B4</color>
+    <color name="azul_turquesa">#1abc9c</color>
+    <color name="aniadir">#dc7633</color>
+    <color name="register">#27ae60</color>
+    <color name="morado">#9b59b6</color>
 </resources>
