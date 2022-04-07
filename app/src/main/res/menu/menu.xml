@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuCambiarTheme"
+        android:title="@string/cambiar_tema"
+        android:icon="@drawable/ic_baseline_bedtime_24"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menuOlvidar"
+        android:icon="@drawable/ic_baseline_content_paste_off_24"
+        android:title="@string/salir_y_olvidar"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:title="@string/log"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+</menu>

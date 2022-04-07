@@ -1,5 +1,6 @@
 package es.alvarorodriguez.pruebafcm.presentation.add
 
+import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
@@ -10,10 +11,10 @@ import java.lang.Exception
 
 class AddViewModel(private val repo: AddRepo) : ViewModel() {
 
-    fun addCar(marca: String, description: String) = liveData(Dispatchers.IO) {
+    fun addCar(marca: String, description: String, imgCar: Bitmap) = liveData(Dispatchers.IO) {
         emit(Result.Loading())
         try {
-            emit(Result.Success(repo.addCar(marca, description)))
+            emit(Result.Success(repo.addCar(marca, description, imgCar)))
         } catch (e: Exception) {
             emit(Result.Failure(e))
         }

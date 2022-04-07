@@ -1,12 +1,18 @@
 package es.alvarorodriguez.pruebafcm.ui.add
 
+import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import es.alvarorodriguez.pruebafcm.R
 import es.alvarorodriguez.pruebafcm.core.Result
 import es.alvarorodriguez.pruebafcm.data.remote.add.AddDataSource
@@ -18,8 +24,17 @@ import es.alvarorodriguez.pruebafcm.presentation.add.AddViewModelFactory
 class AddFragment : Fragment(R.layout.fragment_add) {
 
     private lateinit var binding: FragmentAddBinding
+    private var bitmap: Bitmap? = null
 
-    private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val imageBitmap = result.data?.extras?.get("data") as Bitmap
+                binding.imgAddPhoto.setImageBitmap(imageBitmap)
+                bitmap = imageBitmap
+            }
+        }
 
     private val viewModel by viewModels<AddViewModel> {
         AddViewModelFactory(
@@ -32,34 +47,36 @@ class AddFragment : Fragment(R.layout.fragment_add) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddBinding.bind(view)
-        logout()
+        binding.imgAddPhoto.setOnClickListener {
+            try {
+                val camara = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startForResult.launch(camara)
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(
+                    requireContext(),
+                    "No se encontró ninguna app para abrir la camara.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
         addCar()
     }
 
     private fun addCar() {
         binding.btnAdd.setOnClickListener {
+            bitmap?.let {
+                val marca = binding.marca.text.toString().trim()
+                val description = binding.description.text.toString().trim()
+                val imgCar = bitmap
 
-            val marca = binding.marca.text.toString().trim()
-            val description = binding.description.text.toString().trim()
-
-            observeAddCar(marca, description)
+                observeAddCar(marca, description, imgCar!!)
+            }
         }
     }
 
-    private fun logout() {
-        binding.logout.setOnClickListener {
-            firebaseAuth.signOut()
-            Toast.makeText(
-                requireContext(),
-                "Logout",
-                Toast.LENGTH_LONG
-            ).show()
-            findNavController().navigate(R.id.action_addFragment_to_loginFragment)
-        }
-    }
 
-    private fun observeAddCar(marca: String, description: String) {
-        viewModel.addCar(marca, description).observe(viewLifecycleOwner) { result ->
+    private fun observeAddCar(marca: String, description: String, imgCar: Bitmap) {
+        viewModel.addCar(marca, description, imgCar).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     Toast.makeText(

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">PruebaFCM</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="quickstart_message">Click the SUBSCRIBE TO WEATHER button below to subscribe to the
         weather topic. Messages sent to the weather topic will be received. The LOG TOKEN button logs the
@@ -12,13 +11,9 @@
     <string name="msg_token_fmt" translatable="false">FCM registration Token: %s</string>
 
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
-    <!--
-        This is the name that users will see when interacting with this channel.
-        It should describe the category of notifications that will be sent through this channel
-     -->
-    <!-- [START fcm_default_icon_string] -->
+
     <string name="default_notification_channel_name" translatable="true">Weather</string>
-    <!-- [END fcm_default_icon_string] -->
+
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
     <string name="fcm_message">FCM Message</string>
     <string name="signin">SignIn</string>
@@ -26,10 +21,22 @@
     <string name="password">Password</string>
     <string name="logout">Logout</string>
     <string name="introduce_la_marca_del_coche">Introduce la marca del coche:</string>
-    <string name="seat">Seat...</string>
+    <string name="seat">Seat…</string>
     <string name="introduce_la_descripcion_del_coche">Introduce la descripcion del coche</string>
-    <string name="mi_coche_es_rojo">Mi coche es rojo...</string>
+    <string name="mi_coche_es_rojo">Mi coche es rojo…</string>
     <string name="a_adir">Añadir</string>
     <string name="add">Add</string>
     <string name="home">Home</string>
+    <string name="not_have_an_account_sign_up">Not have an account? Sign Up</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="username">Username</string>
+    <string name="es_una_imagen_de_un_coche">Es una imagen de un coche</string>
+    <string name="es_una_imagen_que_nos_permite_a_adir_una_foto_con_la_camara_con_tan_solo_darle_click">Es una imagen que nos permite añadir una foto con la camara, con tan solo darle click</string>
+    <string name="guardar_credenciales">Guardar credenciales</string>
+    <string name="salir_y_olvidar">Salir y olvidar</string>
+    <string name="cambiar_tema">Cambiar Tema</string>
+    <string name="log">Logout</string>
 </resources>
